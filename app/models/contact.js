@@ -34,6 +34,14 @@ const contactSchema = new Schema({
             }
         }
 
+    },
+    company: {
+        type: String,
+        required:true
+    },
+    address: {
+        type: String,
+        required:true
     }
 })
 

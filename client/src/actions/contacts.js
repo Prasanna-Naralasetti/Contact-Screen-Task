@@ -19,11 +19,7 @@ export const addContact = (contact) => {
 // asyn 
 export const startAddContact = (formData) => {
     return (dispatch) => {
-        axios.post('/contacts', formData, {
-            headers: {
-                'x-auth': localStorage.getItem('token')
-            }
-        })
+        axios.post('/contacts', formData)
         .then(response => {
             // const contact = response.data 
             console.log(response.data)
@@ -39,3 +35,21 @@ export const startAddContact = (formData) => {
         })
     }
 }
+
+export const update = (contact) => {
+  return {
+    type: "UPDATE_CONTACT",
+    payload: contact,
+  };
+};
+//asyc
+export const startUpdateContact= (formData, id) => {
+  return (dispatch) => {
+    axios
+      .put(`/contacts/${id}`, formData)
+      .then((response) => {
+        const contact = response.data;
+        dispatch(update(contact));
+      });
+  };
+};

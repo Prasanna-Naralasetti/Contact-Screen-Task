@@ -1,12 +1,10 @@
 import React from "react";
 import { BrowserRouter, Route, Link } from "react-router-dom";
-import isEmpty from "lodash/isEmpty";
+
 import { connect } from "react-redux";
 
 import Home from "./components/Home";
-import Register from "./components/users/Register";
-import Login from "./components/users/Login";
-import UserAccount from "./components/users/Account";
+
 import ContactsList from "./components/contacts/List";
 import ContactShow from "./components/contacts/Show";
 
@@ -35,9 +33,9 @@ function App(props) {
   );
 }
 
-const mapStateToProps = (state) => {
-  return {
-    user: state.user,
-  };
-};
-export default connect(mapStateToProps)(App);
+// const mapStateToProps = (state) => {
+//   return {
+//     user: state.user,
+//   };
+// };
+export default connect()(App);
