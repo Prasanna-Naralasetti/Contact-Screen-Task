@@ -11,9 +11,9 @@ class ContactForm extends React.Component {
     this.state = {
       name: "",
       email: "",
-        mobile: "",
-        company: "",
-      adress:"",
+      mobile: "",
+      company: "",
+      adress: "",
       hasErrors: "",
     };
   }
@@ -29,11 +29,13 @@ class ContactForm extends React.Component {
     const formData = {
       name: this.state.name,
       email: this.state.email,
-        mobile: this.state.mobile,
-        company: this.state.company,
-      address:this.state.address
+      mobile: this.state.mobile,
+      company: this.state.company,
+      address: this.state.address,
     };
-    this.props.dispatch(startAddContact(formData));
+
+    const redirect = () => this.props.history.push("/contacts");
+    this.props.dispatch(startAddContact(formData, redirect));
   };
 
   componentWillUnmount() {
@@ -122,7 +124,7 @@ class ContactForm extends React.Component {
             />
           </div>
 
-          <input type="submit" className="btn btn-primary" />
+          <button class="btn purple-gradient">Submit</button>
         </form>
       </div>
     );

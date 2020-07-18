@@ -7,6 +7,8 @@ import Home from "./components/Home";
 
 import ContactsList from "./components/contacts/List";
 import ContactShow from "./components/contacts/Show";
+import EditContact from "./components/contacts/Edit";
+import ContactForm from "./components/contacts/Form";
 
 function App(props) {
   return (
@@ -28,14 +30,11 @@ function App(props) {
 
         <Route path="/contacts" component={ContactsList} exact={true} />
         <Route path="/contacts/:id" component={ContactShow} />
+        <Route path="/contact/edit/:id" component={EditContact} />
+        <Route path="/contacts/newcontact" component={ContactForm} />
       </div>
     </BrowserRouter>
   );
 }
 
-// const mapStateToProps = (state) => {
-//   return {
-//     user: state.user,
-//   };
-// };
 export default connect()(App);

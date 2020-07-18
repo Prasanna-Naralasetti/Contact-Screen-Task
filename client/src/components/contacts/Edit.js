@@ -2,8 +2,8 @@ import React from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { startUpdateContact } from '../../actions/contacts'
-import {findContact} from '../../Selectors/FindContact'
+import { startUpdateContact } from "../../actions/contacts";
+import { findContact } from "../../Selectors/FindContact";
 
 class EditContact extends React.Component {
   constructor(props) {
@@ -12,6 +12,8 @@ class EditContact extends React.Component {
       name: props.contact ? props.contact.name : "",
       email: props.contact ? props.contact.email : "",
       mobile: props.contact ? props.contact.mobile : "",
+      company: props.contact ? props.contact.company : "",
+      address: props.contact ? props.contact.address : "",
     };
   }
   handleChange = (e) => {
@@ -25,10 +27,13 @@ class EditContact extends React.Component {
       name: this.state.name,
       email: this.state.email,
       mobile: this.state.mobile,
+      company: this.state.company,
+      address: this.state.address,
     };
-    // const id = props.match.params.id;
-    // const redirect = () => props.history.push("/contacts/:id");
-    this.props.dispatch(startUpdateContact(formData));
+
+    const id = this.props.match.params.id;
+    const redirect = () => this.props.history.push("/contacts");
+    this.props.dispatch(startUpdateContact(formData, id, redirect));
   };
   render() {
     return (
@@ -60,7 +65,6 @@ class EditContact extends React.Component {
             <label htmlFor="mobile">Mobile</label>
             <input
               type="text"
-              type="text"
               id="mobile"
               name="mobile"
               value={this.state.mobile}
@@ -68,11 +72,31 @@ class EditContact extends React.Component {
               className="form-control"
             />
           </div>
-          <input type="submit" className="btn btn-primary m-3" value="submit" />
-          <Link to="/customers">
-            <button type="button" class="btn btn-primary">
-              Back
-            </button>
+          <div className="form-group">
+            <label htmlFor="company">Company</label>
+            <input
+              type="text"
+              value={this.state.company}
+              onChange={this.handleChange}
+              name="company"
+              id="company"
+              className="form-control"
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="address">Address</label>
+            <input
+              type="text"
+              value={this.state.address}
+              onChange={this.handleChange}
+              name="address"
+              id="address"
+              className="form-control"
+            />
+          </div>
+          <button class="btn aqua-gradient">Submit</button>
+          <Link to="/contacts">
+            <button class="btn blue-gradient">Back</button>
           </Link>
         </form>
       </div>
@@ -86,6 +110,3 @@ const mapStateToProps = (state, props) => {
   };
 };
 export default withRouter(connect(mapStateToProps)(EditContact));
-
-
-

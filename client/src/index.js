@@ -16,7 +16,7 @@ store.subscribe(() => {
     console.log(store.getState())
 })
 
- //store.dispatch(setContacts());
+ store.dispatch(setContacts());
 
 const ele = (
     <Provider store={store}>
